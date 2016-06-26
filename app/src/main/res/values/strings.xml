@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">eGablec - Ponuda gableca</string>
+    <string name="ponudalabel">Ponuda na dan:</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Filter eGablec</string>
+    <string name="sifralabel">"Šifra : "</string>
+    <string name="gablec_titlelabel">"Naziv : "</string>
+    <string name="gablec_desclabel">"Opis : "</string>
+    <string name="gablec_pricelabel">"Cijena : "</string>
+    <string name="restaurant_titlelabel">"Restoran : "</string>
+    <string name="restaurant_adresslabel">"Adresa : "</string>
+    <string name="restaurant_phonelabel">"Telefon : "</string>
+</resources>

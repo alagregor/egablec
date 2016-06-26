@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_margin="20px"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/sifralabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sifralabel" />
+
+    <TextView
+        android:id="@+id/sifra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/sifralabel" />
+
+    <TextView
+        android:id="@+id/gablec_titlelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sifralabel"
+        android:text="@string/gablec_titlelabel" />
+
+    <TextView
+        android:id="@+id/gablec_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sifra"
+        android:layout_toRightOf="@+id/gablec_titlelabel" />
+
+    <TextView
+        android:id="@+id/gablec_desclabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gablec_titlelabel"
+        android:text="@string/gablec_desclabel" />
+
+    <TextView
+        android:id="@+id/gablec_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gablec_title"
+        android:layout_toRightOf="@+id/gablec_desclabel" />
+
+    <TextView
+        android:id="@+id/gablec_pricelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gablec_desclabel"
+        android:text="@string/gablec_pricelabel" />
+
+    <TextView
+        android:id="@+id/gablec_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gablec_desc"
+        android:layout_toRightOf="@+id/gablec_pricelabel" />
+
+    <TextView
+        android:id="@+id/restaurant_titlelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gablec_pricelabel"
+        android:text="@string/restaurant_titlelabel" />
+
+    <TextView
+        android:id="@+id/restaurant_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gablec_price"
+        android:layout_toRightOf="@+id/restaurant_titlelabel" />
+
+    <TextView
+        android:id="@+id/restaurant_adresslabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_titlelabel"
+        android:text="@string/restaurant_adresslabel" />
+
+    <TextView
+        android:id="@+id/restaurant_adress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_title"
+        android:layout_toRightOf="@+id/restaurant_adresslabel" />
+
+    <TextView
+        android:id="@+id/restaurant_phonelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_adresslabel"
+        android:text="@string/restaurant_phonelabel" />
+
+    <TextView
+        android:id="@+id/restaurant_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_adress"
+        android:layout_toRightOf="@+id/restaurant_phonelabel" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="#000000"
+        android:padding="1dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call"
+        android:layout_below="@+id/restaurant_phonelabel"
+        android:id="@+id/button" />
+
+
+</RelativeLayout>
