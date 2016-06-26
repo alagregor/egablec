@@ -42,14 +42,10 @@ public class MainActivity extends AppCompatActivity {
     String[] restaurant_title;
     String[] restaurant_adress;
     String[] restaurant_phone;
-    Button b1;
 
     int[] image;
     ArrayList<ItemAttributes> arraylist = new ArrayList<ItemAttributes>();
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+
     private GoogleApiClient client;
 
     @Override
