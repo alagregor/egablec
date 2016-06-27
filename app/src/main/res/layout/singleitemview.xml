@@ -117,6 +117,13 @@
         android:textColorHint="#ffffff"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/sendEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:text="@string/compose_email"/>
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"

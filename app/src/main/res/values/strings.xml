@@ -11,4 +11,5 @@
     <string name="restaurant_titlelabel">"Restoran : "</string>
     <string name="restaurant_adresslabel">"Adresa : "</string>
     <string name="restaurant_phonelabel">"Telefon : "</string>
+    <string name="compose_email">Compose Email</string>
 </resources>
