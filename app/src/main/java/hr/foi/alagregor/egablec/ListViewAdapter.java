@@ -40,8 +40,6 @@ public class ListViewAdapter extends BaseAdapter{
         TextView gablec_desc;
         TextView gablec_price;
         TextView restaurant_title;
-        TextView restaurant_adress;
-        TextView restaurant_phone;
         ImageView image;
     }
 
@@ -71,7 +69,6 @@ public class ListViewAdapter extends BaseAdapter{
             holder.gablec_desc = (TextView) view.findViewById(R.id.gablec_desc);
             holder.gablec_price = (TextView) view.findViewById(R.id.gablec_price);
             holder.restaurant_title = (TextView) view.findViewById(R.id.restaurant_title);
-            holder.restaurant_adress = (TextView) view.findViewById(R.id.restaurant_adress);
             // Locate the ImageView in listview_item.xml
             holder.image = (ImageView) view.findViewById(R.id.image);
             view.setTag(holder);
@@ -87,8 +84,6 @@ public class ListViewAdapter extends BaseAdapter{
                 .getGablecPrice());
         holder.restaurant_title.setText(gableclist.get(position)
                 .getRestaurantTitle());
-        holder.restaurant_adress.setText(gableclist.get(position)
-                .getRestaurantAdress());
         // Set the results into ImageView
         holder.image.setImageResource(gableclist.get(position)
                 .getImage());

@@ -18,38 +18,24 @@
         android:layout_toRightOf="@+id/sifralabel" />
 
     <TextView
-        android:id="@+id/gablec_titlelabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sifralabel"
-        android:text="@string/gablec_titlelabel" />
-
-    <TextView
         android:id="@+id/gablec_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sifra"
-        android:layout_toRightOf="@+id/gablec_titlelabel" />
-
-    <TextView
-        android:id="@+id/gablec_desclabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gablec_titlelabel"
-        android:text="@string/gablec_desclabel" />
+        android:layout_below="@+id/sifralabel"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/gablec_desc"
-        android:layout_width="wrap_content"
+        android:layout_width="420px"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gablec_title"
-        android:layout_toRightOf="@+id/gablec_desclabel" />
+        android:layout_below="@+id/gablec_title" />
 
     <TextView
         android:id="@+id/gablec_pricelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gablec_desclabel"
+        android:layout_below="@+id/gablec_desc"
         android:text="@string/gablec_pricelabel" />
 
     <TextView
@@ -64,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gablec_pricelabel"
+        android:layout_marginBottom="10px"
         android:text="@string/restaurant_titlelabel" />
 
     <TextView
@@ -73,26 +60,12 @@
         android:layout_below="@+id/gablec_price"
         android:layout_toRightOf="@+id/restaurant_titlelabel" />
 
-    <TextView
-        android:id="@+id/restaurant_adresslabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/restaurant_titlelabel"
-        android:text="@string/restaurant_adresslabel" />
-
-    <TextView
-        android:id="@+id/restaurant_adress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/restaurant_title"
-        android:layout_toRightOf="@+id/restaurant_adresslabel" />
-
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="#000000"
+        android:background="#ccc"
         android:layout_marginTop="20px"
         android:padding="1dp" />
 

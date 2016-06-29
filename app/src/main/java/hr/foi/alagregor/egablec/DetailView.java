@@ -114,7 +114,7 @@ public class DetailView extends AppCompatActivity {
 
     protected void sendEmail() {
         Log.i("Send email", "");
-        String[] TO = {""};
+        String[] TO = {"alan089@gmail.com"};
         String[] CC = {""};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
@@ -123,7 +123,7 @@ public class DetailView extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
