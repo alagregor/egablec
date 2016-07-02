@@ -113,11 +113,25 @@
         android:layout_below="@+id/restaurant_adress"
         android:layout_toRightOf="@+id/restaurant_phonelabel" />
 
+    <TextView
+        android:id="@+id/maillabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_phonelabel"
+        android:text="@string/maillabel" />
+
+    <TextView
+        android:id="@+id/mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_phone"
+        android:layout_toRightOf="@+id/maillabel" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Naruči"
-        android:layout_below="@+id/restaurant_phonelabel"
+        android:layout_below="@+id/maillabel"
         android:id="@+id/button"
         android:background="@color/accent_material_light"
         android:textColor="#ffffff"

@@ -17,10 +17,11 @@ public class ItemAttributes {
     private String restaurant_title;
     private String restaurant_adress;
     private String restaurant_phone;
+    private String mail;
     private int image;
 
     public ItemAttributes(String sifra, String gablec_title, String gablec_desc, String gablec_price,
-                          String restaurant_title, String restaurant_adress, String restaurant_phone,
+                          String restaurant_title, String restaurant_adress, String restaurant_phone, String mail,
                           int image) {
         this.sifra = sifra;
         this.gablec_title = gablec_title;
@@ -29,6 +30,7 @@ public class ItemAttributes {
         this.restaurant_title = restaurant_title;
         this.restaurant_adress = restaurant_adress;
         this.restaurant_phone = restaurant_phone;
+        this.mail = mail;
         this.image = image;
     }
 
@@ -53,6 +55,8 @@ public class ItemAttributes {
     public String getRestaurantAdress() { return this.restaurant_adress; }
 
     public String getRestaurantPhone() { return this.restaurant_phone; }
+
+    public String getMail() { return this.mail; }
 
     public int getImage() {
         return this.image;

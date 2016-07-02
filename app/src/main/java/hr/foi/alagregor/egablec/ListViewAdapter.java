@@ -114,7 +114,9 @@ public class ListViewAdapter extends BaseAdapter{
                         (gableclist.get(position).getRestaurantAdress()));
                 // Pass all data restaurant_phone
                 intent.putExtra("restaurant_phone",
-                        (gableclist.get(position).getRestaurantPhone()));
+                        (gableclist.get(position).getRestaurantPhone()));// Pass all data restaurant_phone
+                intent.putExtra("mail",
+                        (gableclist.get(position).getMail()));
                 // Pass all data image
                 intent.putExtra("image",
                         (gableclist.get(position).getImage()));

@@ -25,6 +25,7 @@ public class DetailView extends AppCompatActivity {
     TextView txtrestaurant_title;
     TextView txtrestaurant_adress;
     TextView txtrestaurant_phone;
+    TextView txtmail;
     ImageView viewimage;
     String sifra;
     String gablec_title;
@@ -33,6 +34,7 @@ public class DetailView extends AppCompatActivity {
     String restaurant_title;
     String restaurant_adress;
     String restaurant_phone;
+    String mail;
     int image;
     Button b1;
 
@@ -57,6 +59,8 @@ public class DetailView extends AppCompatActivity {
         restaurant_adress = i.getStringExtra("restaurant_adress");
         // Get the results of restaurant_phone
         restaurant_phone = i.getStringExtra("restaurant_phone");
+        // Get the results of mail
+        mail = i.getStringExtra("mail");
 
         b1=(Button)findViewById(R.id.button);
         b1.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +73,7 @@ public class DetailView extends AppCompatActivity {
         Button startBtn = (Button) findViewById(R.id.sendEmail);
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                sendEmail();
+                sendEmail(mail);
             }
         });
 
@@ -82,8 +86,8 @@ public class DetailView extends AppCompatActivity {
         txtgablec_desc = (TextView) findViewById(R.id.gablec_desc);
         txtgablec_price = (TextView) findViewById(R.id.gablec_price);
         txtrestaurant_title = (TextView) findViewById(R.id.restaurant_title);
-        txtrestaurant_adress = (TextView) findViewById(R.id.restaurant_adress);
-        txtrestaurant_phone = (TextView) findViewById(R.id.restaurant_phone);
+        txtrestaurant_adress = (TextView) findViewById(R.id.restaurant_adress);txtrestaurant_phone = (TextView) findViewById(R.id.restaurant_phone);
+        txtmail = (TextView) findViewById(R.id.mail);
 
         // Locate the ImageView in singleitemview.xml
         viewimage = (ImageView) findViewById(R.id.image);
@@ -96,6 +100,7 @@ public class DetailView extends AppCompatActivity {
         txtrestaurant_title.setText(restaurant_title);
         txtrestaurant_adress.setText(restaurant_adress);
         txtrestaurant_phone.setText(restaurant_phone);
+        txtmail.setText(mail);
 
         // Load the image into the ImageView
         viewimage.setImageResource(image);
@@ -112,9 +117,9 @@ public class DetailView extends AppCompatActivity {
         }
     }
 
-    protected void sendEmail() {
+    protected void sendEmail(String mail) {
         Log.i("Send email", "");
-        String[] TO = {"alan089@gmail.com"};
+        String[] TO = {mail};
         String[] CC = {""};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
@@ -122,7 +127,7 @@ public class DetailView extends AppCompatActivity {
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Prijedlog gableca");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "");
 
         try {

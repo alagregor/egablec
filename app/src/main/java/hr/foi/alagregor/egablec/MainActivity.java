@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String[] restaurant_title;
     String[] restaurant_adress;
     String[] restaurant_phone;
+    String[] mail;
 
     int[] image;
     ArrayList<ItemAttributes> arraylist = new ArrayList<ItemAttributes>();
@@ -128,6 +129,19 @@ public class MainActivity extends AppCompatActivity {
                 ,"+385 (0) 42 658 860"
         };
 
+        mail = new String[]{
+                "test0001@test0001.com"
+                ,"test0001@test0001.com"
+                ,"test0002@test0002.com"
+                ,"test0002@test0002.com"
+                ,"test0001@test0001.com"
+                ,"test0001@test0001.com"
+                ,"test0001@test0001.com"
+                ,"test0003@test0003.com"
+                ,"test0003@test0003.com"
+                ,"test0003@test0003.com"
+        };
+
         image = new int[]{R.drawable.grah_varivo_img_0155, R.drawable.pohane_punjene_palacinke,
                 R.drawable.hqdefault, R.drawable.file_oslica,
                 R.drawable.becki_pileci_gablec, R.drawable.tjestenina_sa_sunkom_i_gljivamaresize, R.drawable.samoborski_gablecresize,
@@ -138,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < sifra.length; i++) {
             ItemAttributes wp = new ItemAttributes(sifra[i], gablec_title[i],
-                    gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], image[i]);
+                    gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
             // Binds all strings into an array
             arraylist.add(wp);
         }
