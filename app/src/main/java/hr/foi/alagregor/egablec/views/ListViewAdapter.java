@@ -1,4 +1,4 @@
-package hr.foi.alagregor.egablec;
+package hr.foi.alagregor.egablec.views;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import hr.foi.alagregor.egablec.R;
+import hr.foi.alagregor.egablec.data.GetData;
+import hr.foi.alagregor.egablec.util.ContactUtil;
+
 /**
  * Created by Alan on 22/06/16.
  */
@@ -22,15 +26,15 @@ public class ListViewAdapter extends BaseAdapter{
     // Declare Variables
     Context mContext;
     LayoutInflater inflater;
-    private List<ItemAttributes> gableclist = null;
-    private ArrayList<ItemAttributes> arraylist;
+    private List<GetData> gableclist = null;
+    private ArrayList<GetData> arraylist;
 
     public ListViewAdapter(Context context,
-                           List<ItemAttributes> gableclist) {
+                           List<GetData> gableclist) {
         mContext = context;
         this.gableclist = gableclist;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<ItemAttributes>();
+        this.arraylist = new ArrayList<GetData>();
         this.arraylist.addAll(gableclist);
     }
 
@@ -49,7 +53,7 @@ public class ListViewAdapter extends BaseAdapter{
     }
 
     @Override
-    public ItemAttributes getItem(int position) {
+    public GetData getItem(int position) {
         return gableclist.get(position);
     }
 
@@ -68,6 +72,7 @@ public class ListViewAdapter extends BaseAdapter{
             holder.gablec_title = (TextView) view.findViewById(R.id.gablec_title);
             holder.gablec_desc = (TextView) view.findViewById(R.id.gablec_desc);
             holder.gablec_price = (TextView) view.findViewById(R.id.gablec_price);
+            holder.restaurant_title = (TextView) view.findViewById(R.id.restaurant_title);
             holder.restaurant_title = (TextView) view.findViewById(R.id.restaurant_title);
             // Locate the ImageView in listview_item.xml
             holder.image = (ImageView) view.findViewById(R.id.image);
@@ -114,7 +119,8 @@ public class ListViewAdapter extends BaseAdapter{
                         (gableclist.get(position).getRestaurantAdress()));
                 // Pass all data restaurant_phone
                 intent.putExtra("restaurant_phone",
-                        (gableclist.get(position).getRestaurantPhone()));// Pass all data restaurant_phone
+                        (gableclist.get(position).getRestaurantPhone()));
+                // Pass all data mail
                 intent.putExtra("mail",
                         (gableclist.get(position).getMail()));
                 // Pass all data image
@@ -135,7 +141,7 @@ public class ListViewAdapter extends BaseAdapter{
         if (charText.length() == 0) {
             gableclist.addAll(arraylist);
         } else {
-            for (ItemAttributes wp : arraylist) {
+            for (GetData wp : arraylist) {
                 if (wp.getGablecTitle().toLowerCase(Locale.getDefault())
                         .contains(charText)) {
                     gableclist.add(wp);

@@ -1,4 +1,4 @@
-package hr.foi.alagregor.egablec;
+package hr.foi.alagregor.egablec.views;
 
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import hr.foi.alagregor.egablec.R;
+import hr.foi.alagregor.egablec.util.ContactUtil;
 
 /**
  * Created by Alan on 22/06/16.
@@ -66,14 +69,14 @@ public class DetailView extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                call("tel:" + restaurant_phone);
+                ContactUtil.placeCall("tel:" + restaurant_phone, DetailView.this);
             }
         });
 
         Button startBtn = (Button) findViewById(R.id.sendEmail);
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                sendEmail(mail);
+                ContactUtil.sendMail(mail, DetailView.this);
             }
         });
 
@@ -104,40 +107,6 @@ public class DetailView extends AppCompatActivity {
 
         // Load the image into the ImageView
         viewimage.setImageResource(image);
-    }
-
-    public void call(String tel) {
-        Intent in=new Intent(Intent.ACTION_CALL, Uri.parse(tel));
-        try{
-            startActivity(in);
-        }
-
-        catch (android.content.ActivityNotFoundException ex){
-            Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    protected void sendEmail(String mail) {
-        Log.i("Send email", "");
-        String[] TO = {mail};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Prijedlog gableca");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Finished sending email...", "");
-        }
-        catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(DetailView.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

@@ -1,4 +1,4 @@
-package hr.foi.alagregor.egablec;
+package hr.foi.alagregor.egablec.data;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,7 +9,7 @@ import static android.support.v4.app.ActivityCompat.startActivity;
 /**
  * Created by Alan on 22/06/16.
  */
-public class ItemAttributes {
+public class GetData {
     private String sifra;
     private String gablec_title;
     private String gablec_desc;
@@ -20,9 +20,9 @@ public class ItemAttributes {
     private String mail;
     private int image;
 
-    public ItemAttributes(String sifra, String gablec_title, String gablec_desc, String gablec_price,
-                          String restaurant_title, String restaurant_adress, String restaurant_phone, String mail,
-                          int image) {
+    public GetData(String sifra, String gablec_title, String gablec_desc, String gablec_price,
+                   String restaurant_title, String restaurant_adress, String restaurant_phone, String mail,
+                   int image) {
         this.sifra = sifra;
         this.gablec_title = gablec_title;
         this.gablec_desc = gablec_desc;
