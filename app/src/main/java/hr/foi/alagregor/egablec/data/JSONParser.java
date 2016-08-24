@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,6 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+
+import hr.foi.alagregor.filter_module.DataHandler;
 
 /**
  * Created by Alan on 15/08/16.
@@ -23,11 +27,6 @@ public class JSONParser {
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
-
-    // constructor
-    public JSONParser() {
-
-    }
 
     public JSONObject getJSONFromUrl(String url) {
 
@@ -73,5 +72,66 @@ public class JSONParser {
         // return JSON String
         return jObj;
 
+    }
+
+    public ArrayList getJSONdata(ArrayList arraylist) {
+        try {
+            JSONArray gableci = null;
+            //URL to get JSON Array
+            String json_url = "http://dev.srle.net/air/JSON/gableci.json";
+
+            JSONObject json = this.getJSONFromUrl(json_url);
+
+            //JSON Node Names
+
+            final String TAG_RESULT = "result";
+            final String TAG_GABLEC_TITLE = "gablec_title";
+            final String TAG_GABLEC_ID = "id";
+            final String TAG_GABLEC_DESC = "gablec_desc";
+            final String TAG_GABLEC_PRICE = "gablec_price";
+            final String TAG_GABLEC_RESTAURANT_TITLE = "restaurant_title";
+            final String TAG_GABLEC_RESTAURANT_ADRESS = "restaurant_adress";
+            final String TAG_GABLEC_RESTAURANT_PHONE = "restaurant_phone";
+            final String TAG_MAIL = "mail";
+            //final String TAG_IMAGE = "image";
+            // Getting JSON Array
+            gableci = json.getJSONArray(TAG_RESULT);
+
+            if (gableci.length() > 0 && gableci != null) {
+                for (int i = 0; i<gableci.length(); i++) {
+                    JSONObject c = gableci.getJSONObject(i);
+
+                    String[] sifra = new String[gableci.length()];
+                    String[] gablec_title = new String[gableci.length()];
+                    String[] gablec_desc = new String[gableci.length()];
+                    String[] gablec_price = new String[gableci.length()];
+                    String[] restaurant_title = new String[gableci.length()];
+                    String[] restaurant_adress = new String[gableci.length()];
+                    String[] restaurant_phone = new String[gableci.length()];
+                    String[] mail = new String[gableci.length()];
+                    int[] image = new DataHolder().DataImage();
+
+                    for (int j = 0; j < gableci.length(); j++) {
+                        sifra[j] = c.getString(TAG_GABLEC_ID);
+                        gablec_title[j] = c.getString(TAG_GABLEC_TITLE);
+                        gablec_desc[j] = c.getString(TAG_GABLEC_DESC);
+                        gablec_price[j] = c.getString(TAG_GABLEC_PRICE);
+                        restaurant_title[j] = c.getString(TAG_GABLEC_RESTAURANT_TITLE);
+                        restaurant_adress[j] = c.getString(TAG_GABLEC_RESTAURANT_ADRESS);
+                        restaurant_phone[j] = c.getString(TAG_GABLEC_RESTAURANT_PHONE);
+                        mail[j] = c.getString(TAG_MAIL);
+                        //image[j] = c.getString(TAG_IMAGE);
+                    }
+
+                    DataHandler dh = new DataHandler(sifra[i], gablec_title[i], gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
+
+                    arraylist.add(dh);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arraylist;
     }
 }

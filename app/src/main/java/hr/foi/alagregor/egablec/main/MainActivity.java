@@ -1,74 +1,50 @@
 package hr.foi.alagregor.egablec.main;
 
+import android.content.Context;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.text.TextWatcher;
-import android.text.Editable;
-import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.egablec.data.DataHolder;
-import hr.foi.alagregor.egablec.data.GetData;
-import hr.foi.alagregor.egablec.views.ListViewAdapter;
+import org.json.JSONArray;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import hr.foi.alagregor.egablec.R;
+import hr.foi.alagregor.filter_module.DataHandler;
+import hr.foi.alagregor.egablec.data.JSONParser;
+import hr.foi.alagregor.egablec.views.ListViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Declare Variables
-    ListView list;
-    ListViewAdapter adapter;
+    JSONArray gableci = null;
+    ListView listView;
     EditText editsearch;
-    ArrayList<GetData> arraylist = new ArrayList<GetData>();
-
+    ListViewAdapter adapter;
+    ArrayList<DataHandler> arraylist = new ArrayList<>();
+    private Context context;
     private GoogleApiClient client;
+    private List<DataHandler> gableclist = null;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview_main);
+        listView = (ListView) findViewById(R.id.listview);
 
-        //get data from class DataHolder
-        String[] sifra = DataHolder.DataSifra();
-        String[] gablec_title = DataHolder.DataGablecTitle();
-        String[] gablec_desc = DataHolder.DataGablecDesc();
-        String[] gablec_price = DataHolder.DataGablecPrice();
-        String[] restaurant_title = DataHolder.DataRestaurantTitle();
-        String[] restaurant_adress = DataHolder.DataRestaurantAdress();
-        String[] restaurant_phone = DataHolder.DataRestaurantPhone();
-        String[] mail = DataHolder.DataMail();
-        String gablec_date = DataHolder.DataGablecDate();
-        int[] image = DataHolder.DataImage();
+        context = this;
 
-        TextView gablecDate = (TextView) findViewById(R.id.gablec_date);
-        gablecDate.setText(gablec_date); //leave this line to assign a specific text
-
-        // Locate the ListView in listview_main.xml
-        list = (ListView) findViewById(R.id.listview);
-
-        for (int i = 0; i < sifra.length; i++) {
-            GetData wp = new GetData(sifra[i], gablec_title[i],
-                    gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
-            // Binds all strings into an array
-            arraylist.add(wp);
-        }
-
-        // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, arraylist);
-
-        // Binds the Adapter to the ListView
-        list.setAdapter(adapter);
+        new DownloadJsonArray().execute();
 
         // Locate the EditText in listview_main.xml
         editsearch = (EditText) findViewById(R.id.search);
@@ -80,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
                 String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                adapter.filter(text);
+                List<DataHandler> filtredList = adapter.filter.filter(text);
+                adapter.updateData(filtredList);
             }
 
             @Override
@@ -139,4 +116,18 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
+    public class DownloadJsonArray extends AsyncTask<Void, Void, ArrayList<DataHandler>> {
+        protected ArrayList<DataHandler> doInBackground (Void... params) {
+            JSONParser jsonParser = new JSONParser();
+            return jsonParser.getJSONdata(arraylist);
+        }
+
+        protected void onPostExecute(ArrayList<DataHandler> result) {
+            super.onPostExecute(result);
+            adapter = new ListViewAdapter(context, arraylist);
+            listView.setAdapter(adapter);
+        }
+    }
+
 }
