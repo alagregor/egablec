@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':order_module', ':filter_module'

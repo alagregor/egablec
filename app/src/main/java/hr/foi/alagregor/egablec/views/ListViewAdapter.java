@@ -2,10 +2,6 @@ package hr.foi.alagregor.egablec.views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,13 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.filter_module.FilterClass;
 import hr.foi.alagregor.filter_module.DataHandler;
+import hr.foi.alagregor.filter_module.FilterClass;
 
 /**
  * Created by Alan on 22/06/16.
@@ -50,6 +45,7 @@ public class ListViewAdapter extends BaseAdapter{
         TextView gablec_desc;
         TextView gablec_price;
         TextView restaurant_title;
+        TextView date;
         ImageView image;
     }
 
@@ -81,12 +77,14 @@ public class ListViewAdapter extends BaseAdapter{
             holder.gablec_price = (TextView) view.findViewById(R.id.gablec_price);
             holder.restaurant_title = (TextView) view.findViewById(R.id.restaurant_title);
             holder.restaurant_title = (TextView) view.findViewById(R.id.restaurant_title);
+            holder.date = (TextView) view.findViewById(R.id.date);
             // Locate the ImageView in listview_item.xml
             holder.image = (ImageView) view.findViewById(R.id.image);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
+
         // Set the results into TextViews
         holder.sifra.setText(gableclist.get(position).getSifra());
         holder.gablec_title.setText(gableclist.get(position).getGablecTitle());
@@ -96,6 +94,8 @@ public class ListViewAdapter extends BaseAdapter{
                 .getGablecPrice());
         holder.restaurant_title.setText(gableclist.get(position)
                 .getRestaurantTitle());
+        holder.date.setText(gableclist.get(position)
+                .getDate());
         // Set the results into ImageView
         holder.image.setImageResource(gableclist.get(position)
                 .getImage());
@@ -146,33 +146,5 @@ public class ListViewAdapter extends BaseAdapter{
     public void updateData(List<DataHandler> gableclist){
         this.gableclist = gableclist;
         notifyDataSetChanged();
-
-    }
-
-    public class DownloadImageFromInternet extends AsyncTask<String, Void, Bitmap> {
-        ImageView imageView;
-
-        public DownloadImageFromInternet(ImageView imageView) {
-            this.imageView = imageView;
-            //Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String imageURL = urls[0];
-            Bitmap bimage = null;
-            try {
-                InputStream in = new java.net.URL(imageURL).openStream();
-                bimage = BitmapFactory.decodeStream(in);
-
-            } catch (Exception e) {
-                Log.e("Error Message", e.getMessage());
-                e.printStackTrace();
-            }
-            return bimage;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            imageView.setImageBitmap(result);
-        }
     }
 }
