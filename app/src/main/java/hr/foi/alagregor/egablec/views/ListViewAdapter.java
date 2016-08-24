@@ -1,23 +1,26 @@
 package hr.foi.alagregor.egablec.views;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.egablec.data.GetData;
-import hr.foi.alagregor.egablec.util.ContactUtil;
+import hr.foi.alagregor.filter_module.FilterClass;
+import hr.foi.alagregor.filter_module.DataHandler;
 
 /**
  * Created by Alan on 22/06/16.
@@ -26,16 +29,19 @@ public class ListViewAdapter extends BaseAdapter{
     // Declare Variables
     Context mContext;
     LayoutInflater inflater;
-    private List<GetData> gableclist = null;
-    private ArrayList<GetData> arraylist;
+    private List<DataHandler> gableclist = null;
+    private ArrayList<DataHandler> arraylist;
+    public static FilterClass filter;
 
     public ListViewAdapter(Context context,
-                           List<GetData> gableclist) {
+                           List<DataHandler> gableclist) {
         mContext = context;
         this.gableclist = gableclist;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<GetData>();
+        this.arraylist = new ArrayList<DataHandler>();
         this.arraylist.addAll(gableclist);
+
+        ListViewAdapter.filter = new FilterClass(gableclist);
     }
 
     public class ViewHolder {
@@ -53,7 +59,7 @@ public class ListViewAdapter extends BaseAdapter{
     }
 
     @Override
-    public GetData getItem(int position) {
+    public DataHandler getItem(int position) {
         return gableclist.get(position);
     }
 
@@ -65,6 +71,7 @@ public class ListViewAdapter extends BaseAdapter{
     public View getView(final int position, View view, ViewGroup parent) {
         final ViewHolder holder;
         if (view == null) {
+            //caches TextView - avoid frequent calls of findViewById()
             holder = new ViewHolder();
             view = inflater.inflate(R.layout.listview_item, null);
             // Locate the TextViews in listview_item.xml
@@ -92,12 +99,14 @@ public class ListViewAdapter extends BaseAdapter{
         // Set the results into ImageView
         holder.image.setImageResource(gableclist.get(position)
                 .getImage());
+        //new DownloadImageFromInternet(holder.image).execute("http://dev.srle.net/air/uploads/"+gableclist.get(position).getImage());
+
         // Listen for ListView Item Click
         view.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                // Send single item click data to DetailView Class
+                // Send single item click data to DetailView Class with intent
                 Intent intent = new Intent(mContext, DetailView.class);
                 // Pass all data sifra
                 intent.putExtra("sifra",
@@ -134,20 +143,36 @@ public class ListViewAdapter extends BaseAdapter{
         return view;
     }
 
-    // Filter Class
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        gableclist.clear();
-        if (charText.length() == 0) {
-            gableclist.addAll(arraylist);
-        } else {
-            for (GetData wp : arraylist) {
-                if (wp.getGablecTitle().toLowerCase(Locale.getDefault())
-                        .contains(charText)) {
-                    gableclist.add(wp);
-                }
-            }
-        }
+    public void updateData(List<DataHandler> gableclist){
+        this.gableclist = gableclist;
         notifyDataSetChanged();
+
+    }
+
+    public class DownloadImageFromInternet extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+
+        public DownloadImageFromInternet(ImageView imageView) {
+            this.imageView = imageView;
+            //Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String imageURL = urls[0];
+            Bitmap bimage = null;
+            try {
+                InputStream in = new java.net.URL(imageURL).openStream();
+                bimage = BitmapFactory.decodeStream(in);
+
+            } catch (Exception e) {
+                Log.e("Error Message", e.getMessage());
+                e.printStackTrace();
+            }
+            return bimage;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
     }
 }
