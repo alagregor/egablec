@@ -9,8 +9,15 @@
     <string name="gablec_desclabel">"Opis : "</string>
     <string name="gablec_pricelabel">"Cijena : "</string>
     <string name="restaurant_titlelabel">"Restoran : "</string>
+    <string name="date_label">"Datum : "</string>
     <string name="restaurant_adresslabel">"Adresa : "</string>
     <string name="restaurant_phonelabel">"Telefon : "</string>
     <string name="maillabel">Mail : </string>
     <string name="compose_email">Predloži gablec</string>
+    <string-array name="dates_array">
+        <item>Odaberi datum gableca:</item>
+        <item>25.6.2016.</item>
+        <item>26.6.2016.</item>
+        <item>27.6.2016.</item>
+    </string-array>
 </resources>

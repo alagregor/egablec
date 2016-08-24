@@ -93,6 +93,7 @@ public class JSONParser {
             final String TAG_GABLEC_RESTAURANT_ADRESS = "restaurant_adress";
             final String TAG_GABLEC_RESTAURANT_PHONE = "restaurant_phone";
             final String TAG_MAIL = "mail";
+            final String TAG_DATE = "gablec_date";
             //final String TAG_IMAGE = "image";
             // Getting JSON Array
             gableci = json.getJSONArray(TAG_RESULT);
@@ -109,9 +110,11 @@ public class JSONParser {
                     String[] restaurant_adress = new String[gableci.length()];
                     String[] restaurant_phone = new String[gableci.length()];
                     String[] mail = new String[gableci.length()];
+                    String[] date = new String[gableci.length()];
                     int[] image = new DataHolder().DataImage();
 
                     for (int j = 0; j < gableci.length(); j++) {
+                        date[j] = c.getString(TAG_DATE);
                         sifra[j] = c.getString(TAG_GABLEC_ID);
                         gablec_title[j] = c.getString(TAG_GABLEC_TITLE);
                         gablec_desc[j] = c.getString(TAG_GABLEC_DESC);
@@ -123,7 +126,7 @@ public class JSONParser {
                         //image[j] = c.getString(TAG_IMAGE);
                     }
 
-                    DataHandler dh = new DataHandler(sifra[i], gablec_title[i], gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
+                    DataHandler dh = new DataHandler(date[i], sifra[i], gablec_title[i], gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
 
                     arraylist.add(dh);
                 }

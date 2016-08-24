@@ -4,6 +4,7 @@ package hr.foi.alagregor.filter_module;
  * Created by Alan on 22/06/16.
  */
 public class DataHandler {
+    private String date;
     private String sifra;
     private String gablec_title;
     private String gablec_desc;
@@ -14,7 +15,8 @@ public class DataHandler {
     private String mail;
     private int image;
 
-    public DataHandler(String sifra, String gablec_title, String gablec_desc, String gablec_price, String restaurant_title, String restaurant_adress, String restaurant_phone, String mail, int image ) {
+    public DataHandler(String date, String sifra, String gablec_title, String gablec_desc, String gablec_price, String restaurant_title, String restaurant_adress, String restaurant_phone, String mail, int image ) {
+        this.date = date;
         this.sifra = sifra;
         this.gablec_title = gablec_title;
         this.gablec_desc = gablec_desc;
@@ -24,6 +26,10 @@ public class DataHandler {
         this.restaurant_phone = restaurant_phone;
         this.mail = mail;
         this.image = image;
+    }
+
+    public String getDate() {
+        return this.date;
     }
 
     public String getSifra() {

@@ -7,14 +7,12 @@
         android:id="@+id/sifralabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
         android:text="@string/sifralabel" />
 
     <TextView
         android:id="@+id/sifra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10px"
         android:layout_toRightOf="@+id/sifralabel" />
 
     <TextView
@@ -22,12 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sifralabel"
-        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/gablec_desc"
-        android:layout_width="420px"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gablec_title" />
 
@@ -50,7 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gablec_pricelabel"
-        android:layout_marginBottom="10px"
         android:text="@string/restaurant_titlelabel" />
 
     <TextView
@@ -59,6 +55,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gablec_price"
         android:layout_toRightOf="@+id/restaurant_titlelabel" />
+
+    <TextView
+        android:id="@+id/date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_titlelabel"
+        android:text="@string/date_label" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_title"
+        android:layout_toRightOf="@+id/date_label" />
 
     <ImageView
         android:id="@+id/image"

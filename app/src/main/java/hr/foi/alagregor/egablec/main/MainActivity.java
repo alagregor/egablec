@@ -7,34 +7,63 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.filter_module.DataHandler;
 import hr.foi.alagregor.egablec.data.JSONParser;
 import hr.foi.alagregor.egablec.views.ListViewAdapter;
+import hr.foi.alagregor.filter_module.DataHandler;
 
 public class MainActivity extends AppCompatActivity {
 
-    JSONArray gableci = null;
     ListView listView;
     EditText editsearch;
     ListViewAdapter adapter;
     ArrayList<DataHandler> arraylist = new ArrayList<>();
     private Context context;
     private GoogleApiClient client;
-    private List<DataHandler> gableclist = null;
+    private Spinner spinner;
+    String odabrani_datum = "";
+    String text = "";
+
+    public void addListenerOnSpinnerItemSelection() {
+        spinner = (Spinner) findViewById(R.id.spinner_dates);
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener());
+    }
+
+    class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            odabrani_datum = parent.getItemAtPosition(pos).toString();
+            String datum = "Odaberi datum gableca:";
+
+            if (odabrani_datum.equals(datum)) {
+                odabrani_datum = "";
+            }
+
+            List<DataHandler> filteredList = adapter.filter.filter(text, odabrani_datum);
+            adapter.updateData(filteredList);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
-                String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                List<DataHandler> filtredList = adapter.filter.filter(text);
-                adapter.updateData(filtredList);
+                text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                List<DataHandler> filteredList = adapter.filter.filter(text, odabrani_datum);
+                adapter.updateData(filteredList);
             }
 
             @Override
@@ -75,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                spinner = (Spinner) findViewById(R.id.spinner_dates);
+                addListenerOnSpinnerItemSelection();
+            }
+        }, 2000);
     }
 
     @Override

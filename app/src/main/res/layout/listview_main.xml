@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/ponudalabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ponudalabel"
-        android:layout_margin="20px"
-        android:textSize="40px"
-        android:textColor="#000000" />
+    <Spinner
+        android:id="@+id/spinner_dates"
+        android:layout_width="fill_parent"
+        android:entries="@array/dates_array"
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/gablec_date"
@@ -20,6 +20,7 @@
         android:layout_marginLeft="20px"
         android:layout_marginRight="20px"
         android:layout_marginTop="20px"
+        android:layout_below="@+id/spinner_dates"
         android:layout_alignBottom="@+id/ponudalabel"
         android:textSize="40px" />
 

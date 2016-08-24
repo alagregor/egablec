@@ -13,16 +13,17 @@ public class FilterClass {
 
     public FilterClass(List<DataHandler> gableclist){this.arraylist=gableclist; this.gableclist = new ArrayList<>();}
 
-    public List<DataHandler> filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
+    public List<DataHandler> filter(String text, String datum) {
+        text = text.toLowerCase(Locale.getDefault());
         gableclist.clear();
-        if (charText.length() == 0) {
+        if (text.length() == 0 && datum.length() == 0) {
             gableclist.addAll(arraylist);
         } else {
-            for (DataHandler wp : arraylist) {
-                if (wp.getGablecTitle().toLowerCase(Locale.getDefault())
-                        .contains(charText)) {
-                    gableclist.add(wp);
+            for (DataHandler dh : arraylist) {
+                if (dh.getDate().toLowerCase(Locale.getDefault()).contains(datum)
+                    && dh.getGablecTitle().toLowerCase(Locale.getDefault()).contains(text))
+                {
+                    gableclist.add(dh);
                 }
             }
         }
