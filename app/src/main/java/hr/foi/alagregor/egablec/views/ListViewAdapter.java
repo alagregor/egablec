@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.filter_module.DataHandler;
-import hr.foi.alagregor.filter_module.FilterClass;
+import hr.foi.alagregor.egablec.data.Gableci;
+import hr.foi.alagregor.egablec.data.FilterClass;
 
 /**
  * Created by Alan on 22/06/16.
@@ -24,16 +24,16 @@ public class ListViewAdapter extends BaseAdapter{
     // Declare Variables
     Context mContext;
     LayoutInflater inflater;
-    private List<DataHandler> gableclist = null;
-    private ArrayList<DataHandler> arraylist;
+    private List<Gableci> gableclist = null;
+    private ArrayList<Gableci> arraylist;
     public static FilterClass filter;
 
     public ListViewAdapter(Context context,
-                           List<DataHandler> gableclist) {
+                           List<Gableci> gableclist) {
         mContext = context;
         this.gableclist = gableclist;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<DataHandler>();
+        this.arraylist = new ArrayList<Gableci>();
         this.arraylist.addAll(gableclist);
 
         ListViewAdapter.filter = new FilterClass(gableclist);
@@ -55,7 +55,7 @@ public class ListViewAdapter extends BaseAdapter{
     }
 
     @Override
-    public DataHandler getItem(int position) {
+    public Gableci getItem(int position) {
         return gableclist.get(position);
     }
 
@@ -143,7 +143,7 @@ public class ListViewAdapter extends BaseAdapter{
         return view;
     }
 
-    public void updateData(List<DataHandler> gableclist){
+    public void updateData(List<Gableci> gableclist){
         this.gableclist = gableclist;
         notifyDataSetChanged();
     }

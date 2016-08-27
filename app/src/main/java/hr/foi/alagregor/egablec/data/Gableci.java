@@ -3,7 +3,7 @@ package hr.foi.alagregor.egablec.data;
 /**
  * Created by Alan on 27/08/16.
  */
-public class Gableci implements Gablec{
+public class Gableci {
 
     private String date;
     private String sifra;
@@ -15,7 +15,6 @@ public class Gableci implements Gablec{
     private String restaurant_phone;
     private String mail;
     private int image;
-    private String url;
 
     public Gableci(String date, String sifra, String gablec_title, String gablec_desc, String gablec_price, String restaurant_title, String restaurant_adress, String restaurant_phone, String mail, int image ) {
         this.date = date;
@@ -30,57 +29,42 @@ public class Gableci implements Gablec{
         this.image = image;
     }
 
-    @Override
-    public String getData(String url) {
-        return this.url;
-    }
-
-    @Override
     public String getDate() {
         return this.date;
     }
 
-    @Override
     public String getSifra() {
         return this.sifra;
     }
 
-    @Override
     public String getGablecTitle() {
         return this.gablec_title;
     }
 
-    @Override
     public String getGablecDesc() {
         return this.gablec_desc;
     }
 
-    @Override
     public String getGablecPrice() {
         return this.gablec_price;
     }
 
-    @Override
     public String getRestaurantTitle() {
         return this.restaurant_title;
     }
 
-    @Override
     public String getRestaurantAdress() {
         return this.restaurant_adress;
     }
 
-    @Override
     public String getRestaurantPhone() {
         return this.restaurant_phone;
     }
 
-    @Override
     public String getMail() {
         return this.mail;
     }
 
-    @Override
     public Integer getImage() {
         return this.image;
     }

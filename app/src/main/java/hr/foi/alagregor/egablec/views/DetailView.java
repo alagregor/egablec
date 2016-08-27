@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.order.OrderUtil;
+import hr.foi.alagregor.egablec.data.OrderUtil;
 
 /**
  * Created by Alan on 22/06/16.

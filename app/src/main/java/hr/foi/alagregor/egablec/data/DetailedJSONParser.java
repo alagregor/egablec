@@ -1,86 +1,28 @@
 package hr.foi.alagregor.egablec.data;
 
-import android.util.Log;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
  * Created by Alan on 15/08/16.
  */
-public class DetailedJSONParser {
-    static InputStream is = null;
-    static JSONObject jObj = null;
-    static String json = "";
-    Gableci ds;
+public class DetailedJsonParser implements DataSource {
+    //example: http://dev.srle.net/air/JSON/gableci.json"
+    private String url = "";
 
-    public static JSONObject getJSONFromUrl(String url) {
-
-        // Making HTTP request
-        try {
-            // defaultHttpClient
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(url);
-
-            HttpResponse httpResponse = httpClient.execute(httpPost);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            is = httpEntity.getContent();
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    is, "iso-8859-1"), 8);
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-            is.close();
-            json = sb.toString();
-        } catch (Exception e) {
-            Log.e("Buffer Error", "Error converting result " + e.toString());
-        }
-
-        // try parse the string to a JSON object
-        try {
-            jObj = new JSONObject(json);
-        } catch (JSONException e) {
-            Log.e("JSON Parser", "Error parsing data " + e.toString());
-        }
-
-        // return JSON String
-        return jObj;
-
+    public DetailedJsonParser(String url) {
+        this.url = url;
     }
 
+    @Override
     public ArrayList getJSONdata(ArrayList arraylist) {
         try {
             JSONArray gableci = null;
             //URL to get JSON Array
 
-            String json_url = "http://dev.srle.net/air/JSON/gableci.json";
-
-            JSONObject json = this.getJSONFromUrl(json_url);
+            JSONObject json = JsonUtil.getDataFromHttpRequest(this.url);
 
             //JSON Node Names
 
