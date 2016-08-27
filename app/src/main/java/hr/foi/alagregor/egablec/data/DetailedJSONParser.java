@@ -18,17 +18,16 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import hr.foi.alagregor.filter_module.DataHandler;
-
 /**
  * Created by Alan on 15/08/16.
  */
-public class JSONParser {
+public class DetailedJSONParser {
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
+    Gableci ds;
 
-    public JSONObject getJSONFromUrl(String url) {
+    public static JSONObject getJSONFromUrl(String url) {
 
         // Making HTTP request
         try {
@@ -78,6 +77,7 @@ public class JSONParser {
         try {
             JSONArray gableci = null;
             //URL to get JSON Array
+
             String json_url = "http://dev.srle.net/air/JSON/gableci.json";
 
             JSONObject json = this.getJSONFromUrl(json_url);
@@ -126,9 +126,9 @@ public class JSONParser {
                         //image[j] = c.getString(TAG_IMAGE);
                     }
 
-                    DataHandler dh = new DataHandler(date[i], sifra[i], gablec_title[i], gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
+                    Gableci ds = new Gableci(date[i], sifra[i], gablec_title[i], gablec_desc[i], gablec_price[i], restaurant_title[i], restaurant_adress[i], restaurant_phone[i], mail[i], image[i]);
 
-                    arraylist.add(dh);
+                    arraylist.add(ds);
                 }
             }
 

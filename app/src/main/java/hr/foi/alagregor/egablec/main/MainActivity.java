@@ -24,16 +24,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import hr.foi.alagregor.egablec.R;
-import hr.foi.alagregor.egablec.data.JSONParser;
+import hr.foi.alagregor.egablec.data.DataSource;
+import hr.foi.alagregor.egablec.data.DetailedJsonParser;
+import hr.foi.alagregor.egablec.data.Gableci;
+import hr.foi.alagregor.egablec.data.SimpleJsonParser;
 import hr.foi.alagregor.egablec.views.ListViewAdapter;
-import hr.foi.alagregor.filter_module.DataHandler;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     EditText editsearch;
     ListViewAdapter adapter;
-    ArrayList<DataHandler> arraylist = new ArrayList<>();
+    ArrayList<Gableci> arraylist = new ArrayList<>();
     private Context context;
     private GoogleApiClient client;
     private Spinner spinner;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 odabrani_datum = "";
             }
 
-            List<DataHandler> filteredList = adapter.filter.filter(text, odabrani_datum);
+            List<Gableci> filteredList = adapter.filter.filter(text, odabrani_datum);
             adapter.updateData(filteredList);
         }
 
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview_main);
         listView = (ListView) findViewById(R.id.listview);
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
                 text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                List<DataHandler> filteredList = adapter.filter.filter(text, odabrani_datum);
+                List<Gableci> filteredList = adapter.filter.filter(text, odabrani_datum);
                 adapter.updateData(filteredList);
             }
 
@@ -154,13 +157,26 @@ public class MainActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-    public class DownloadJsonArray extends AsyncTask<Void, Void, ArrayList<DataHandler>> {
-        protected ArrayList<DataHandler> doInBackground (Void... params) {
-            JSONParser jsonParser = new JSONParser();
-            return jsonParser.getJSONdata(arraylist);
+    public class DownloadJsonArray extends AsyncTask<Void, Void, ArrayList<Gableci>> {
+        protected ArrayList<Gableci> doInBackground (Void... params) {
+            ArrayList gableciList = new ArrayList();
+
+            //
+            // Adding detailed data (from English JSON) to ArrayList collection
+            //
+            DataSource ds1 = new DetailedJsonParser("http://dev.srle.net/air/JSON/gableci.json");
+            gableciList.addAll(ds1.getJSONdata(arraylist));
+
+            //
+            // Adding simple data (from Croatian JSON) to ArrayList collection
+            //
+            DataSource ds2 = new SimpleJsonParser("http://dev.srle.net/air/JSON/gableci2.json");
+            gableciList.addAll(ds2.getJSONdata(arraylist));
+
+            return gableciList;
         }
 
-        protected void onPostExecute(ArrayList<DataHandler> result) {
+        protected void onPostExecute(ArrayList<Gableci> result) {
             super.onPostExecute(result);
             adapter = new ListViewAdapter(context, arraylist);
             listView.setAdapter(adapter);

@@ -17,4 +17,13 @@ public class DataHolder {
         return image;
     }
 
+    public static int[] DataSimpleImage()
+    {
+        image = new int[]{R.drawable.lignje, R.drawable.tjestenina_sa_sunkom_i_gljivamaresize,
+                R.drawable.samoborski_gablecresize, R.drawable.file_oslica,
+                R.drawable.becki_pileci_gablec, R.drawable.file_oslica, R.drawable.samoborski_gablecresize,
+                R.drawable.piletina_curry, R.drawable.pileci, R.drawable.grah_varivo_img_0155};
+        return image;
+    }
+
 }
