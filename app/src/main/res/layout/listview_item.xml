@@ -4,29 +4,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/sifralabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sifralabel" />
-
-    <TextView
-        android:id="@+id/sifra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/sifralabel" />
-
-    <TextView
         android:id="@+id/gablec_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sifralabel"
+        android:layout_marginTop="10px"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/gablec_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gablec_title" />
+        android:layout_below="@+id/gablec_title"
+        />
 
     <TextView
         android:id="@+id/gablec_pricelabel"
@@ -68,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/restaurant_title"
+        android:layout_marginBottom="20px"
         android:layout_toRightOf="@+id/date_label" />
 
     <ImageView
@@ -75,8 +65,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="#ccc"
-        android:layout_marginTop="20px"
-        android:padding="1dp" />
+        android:layout_marginTop="15px"
+        android:layout_marginBottom="10px"
+        android:background="#ffffff"
+        android:padding="2dp" />
 
 </RelativeLayout>

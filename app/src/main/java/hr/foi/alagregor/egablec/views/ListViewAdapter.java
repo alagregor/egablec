@@ -71,7 +71,7 @@ public class ListViewAdapter extends BaseAdapter{
             holder = new ViewHolder();
             view = inflater.inflate(R.layout.listview_item, null);
             // Locate the TextViews in listview_item.xml
-            holder.sifra = (TextView) view.findViewById(R.id.sifra);
+            //holder.sifra = (TextView) view.findViewById(R.id.sifra);
             holder.gablec_title = (TextView) view.findViewById(R.id.gablec_title);
             holder.gablec_desc = (TextView) view.findViewById(R.id.gablec_desc);
             holder.gablec_price = (TextView) view.findViewById(R.id.gablec_price);
@@ -86,7 +86,7 @@ public class ListViewAdapter extends BaseAdapter{
         }
 
         // Set the results into TextViews
-        holder.sifra.setText(gableclist.get(position).getSifra());
+        //holder.sifra.setText(gableclist.get(position).getSifra());
         holder.gablec_title.setText(gableclist.get(position).getGablecTitle());
         holder.gablec_desc.setText(gableclist.get(position)
                 .getGablecDesc());

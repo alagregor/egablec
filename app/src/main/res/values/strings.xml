@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">eGablec - Ponuda gableca</string>
+    <string name="app_name">eGablec</string>
     <string name="ponudalabel">Ponuda na dan:</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
@@ -16,8 +16,8 @@
     <string name="compose_email">Predloži gablec</string>
     <string-array name="dates_array">
         <item>Odaberi datum gableca:</item>
-        <item>25.6.2016.</item>
-        <item>26.6.2016.</item>
-        <item>27.6.2016.</item>
+        <item>06.09.2016.</item>
+        <item>07.09.2016.</item>
+        <item>08.09.2016.</item>
     </string-array>
 </resources>
